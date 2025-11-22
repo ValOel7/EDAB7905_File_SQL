@@ -21,11 +21,9 @@ GROUP BY BillingCountry
 ORDER BY TotalRevenue DESC;""",conn)
 print(q1)
 
-"""My insight: The top markets are the USA, Canada, France, Brazil and Germany. From which USA has a revenue share percentage of 22.46% and Canada 13.05%.
+st.write("My insight: The top markets are the USA, Canada, France, Brazil and Germany. From which USA has a revenue share percentage of 22.46% and Canada 13.05%.")
 
-#Question 2 Top 10 artists by sales
-
-"""##Q2 Answer"""
+st.header("Question 2 Top 10 artists by sales")
 
 q2 = pd.read_sql("""
 SELECT
@@ -47,14 +45,10 @@ ORDER BY TotalSales DESC
 LIMIT 10;""",conn)
 print(q2)
 
-"""My insight: The most popular artist is Iron Maiden taking the first position with the highest sales in terms of Money earned.
-The second highest earning artist is U2.
+st.write("My insight: The most popular artist is Iron Maiden taking the first position with the highest sales in terms of Money earned.
+The second highest earning artist is U2.")
 
-#Question 3 Customer life time value + last purchase
-For every customer compute the lifetime value = sum of all invoices, and the also the most recent purchase
-
-"""##Q3 Answer"""
-
+st.header("Question 3 Customer life time value + last purchase")
 #Finalq3
 
 q3 = pd.read_sql("""
@@ -73,4 +67,4 @@ ORDER BY LifetimeValue DESC
 ;""",conn)
 print(q3)
 
-"""My insight: The highest paying customer is Helena Holý and the last date of purchase was 2025-11-13 meaning that the customer is still active. In contrast the second highest paying customer is Richard Cunningham yet the last date of purchas was 2025-04-05 which is not that recent.
+st.write("My insight: The highest paying customer is Helena Holý and the last date of purchase was 2025-11-13 meaning that the customer is still active. In contrast the second highest paying customer is Richard Cunningham yet the last date of purchas was 2025-04-05 which is not that recent.")
