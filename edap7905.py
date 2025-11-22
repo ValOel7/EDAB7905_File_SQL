@@ -17,7 +17,7 @@ FROM Invoice AS i
 GROUP BY BillingCountry
 
 ORDER BY TotalRevenue DESC;""",conn)
-print(q1)
+st.dataframe(q1)
 
 st.write("My insight: The top markets are the USA, Canada, France, Brazil and Germany. From which USA has a revenue share percentage of 22.46% and Canada 13.05%.")
 
@@ -41,7 +41,7 @@ GROUP BY ArtistName
 ORDER BY TotalSales DESC
 
 LIMIT 10;""",conn)
-print(q2)
+st.dataframe(q2)
 
 st.write("My insight: The most popular artist is Iron Maiden taking the first position with the highest sales in terms of Money earned. The second highest earning artist is U2.")
 
@@ -62,6 +62,6 @@ ORDER BY LifetimeValue DESC
 
 
 ;""",conn)
-print(q3)
+st.dataframe(q3)
 
 st.write("My insight: The highest paying customer is Helena Holý and the last date of purchase was 2025-11-13 meaning that the customer is still active. In contrast the second highest paying customer is Richard Cunningham yet the last date of purchas was 2025-04-05 which is not that recent.")
