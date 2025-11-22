@@ -18,37 +18,8 @@ import pandas as pd
 !wget -q https://github.com/lerocha/chinook-database/raw/master/ChinookDatabase/DataSources/Chinook_Sqlite.sqlite
 conn = sqlite3.connect('Chinook_SqliteGit.sqlite')
 
-"""#General Info to get my column names"""
-
-#I want to try and see which tables are in the database so I will look at the master
-tables = pd.read_sql_query("""SELECT name FROM sqlite_master WHERE type='table';""", conn)
-print(tables)
-
 """#Question 1 Revenue by Country + share of total
 Using invoice compute total revenue per bulling country. Calculate each country's percentage share of overall revenue
-
-
-
-Output columns
-
-
-*   Billing Country
-*   Total revenue
-*   Revenue sharepercent
-
-Identify top markerts and how concentrated they are:
-
-##Thinking process
-"""
-
-#Information on invoice to see which columns is inside:
-invoiceinfo = pd.read_sql_query("""SELECT * FROM invoice;""", conn)
-print(invoiceinfo)
-
-#so I think I will use the billing country and then aslo the total column, so that is per country... then devide that per country for the whole sum of all the totals
-
-"""##Q1 Answer"""
-
 q1 = pd.read_sql("""
 SELECT
   i.BillingCountry,
@@ -65,34 +36,6 @@ print(q1)
 """My insight: The top markets are the USA, Canada, France, Brazil and Germany. From which USA has a revenue share percentage of 22.46% and Canada 13.05%.
 
 #Question 2 Top 10 artists by sales
-
-Find 10 artists that genererate most sales
-ARTIST ALBUM TRACK INVOICE LINE AND INCOICE
-
-##Thinking process
-"""
-
-#INFO ON ARTIST AND ALBUM AND TRACK AND INVOICE LINE AND INVOICE
-
-Artistinfo = pd.read_sql("""
-SELECT * FROM Artist;""",conn)
-print(Artistinfo)
-
-Albuminfo = pd.read_sql("""
-SELECT * FROM Album;""",conn)
-print(Albuminfo)
-
-Trackinfo = pd.read_sql("""
-SELECT * FROM Track;""",conn)
-print(Trackinfo)
-
-Invoiceinfo = pd.read_sql("""
-SELECT * FROM Invoice;""",conn)
-print(Invoiceinfo)
-
-InvoiceLineinfo = pd.read_sql("""
-SELECT * FROM InvoiceLine;""",conn)
-print(InvoiceLineinfo)
 
 """##Q2 Answer"""
 
@@ -122,46 +65,6 @@ The second highest earning artist is U2.
 #Question 3 Customer life time value + last purchase
 For every customer compute the lifetime value = sum of all invoices, and the also the most recent purchase
 
-order highest to lowest life time value
-customer nd invoice
-
-Output customer id, full name and countlry and lifetime and purchase date
-
-##Thinking process
-"""
-
-#I first want to get info on the customer thable and then on the invoice table to see where I can link
-customerinfo = pd.read_sql("""SELECT * FROM Customer
-
-;""",conn)
-print(customerinfo)
-
-#then invoiceinfo
-
-invoiceinfo = pd.read_sql(""" SELECT * FROM Invoice;""",conn)
-print(invoiceinfo)
-
-#LINk the 2 via customerid try q3
-qtry = pd.read_sql("""
-SELECT
-  c.CustomerId, c.FirstName||' '||c.LastName AS FullName, c.Country, SUM(i.Total) AS LifetimeValue
-
-FROM Customer as c
-
-JOIN Invoice AS i ON c.CustomerId = i.CustomerId
-
-GROUP BY FullName
-
-ORDER BY LifetimeValue DESC
-
-
-;""",conn)
-print(qtry)
-
-#still need to add the last purchase date....
-
-#How to get the most recent date.. , MAX(i.InvoiceDate) AS LastPurchaseDate
-
 """##Q3 Answer"""
 
 #Finalq3
@@ -183,10 +86,3 @@ ORDER BY LifetimeValue DESC
 print(q3)
 
 """My insight: The highest paying customer is Helena Holý and the last date of purchase was 2025-11-13 meaning that the customer is still active. In contrast the second highest paying customer is Richard Cunningham yet the last date of purchas was 2025-04-05 which is not that recent.
-
-#Now to export for the next question
-"""
-
-q3.to_csv('customer_lifetime_value.csv', index=False)
-
-"""Download from the right hand side"""
