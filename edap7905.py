@@ -2,8 +2,6 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
-#Link for the dataset chinook:https://github.com/lerocha/chinook-database/blob/master/ChinookDatabase/DataSources/Chinook_Sqlite.sqlite mentioned to use to the SQLITE
-!wget -q https://github.com/lerocha/chinook-database/raw/master/ChinookDatabase/DataSources/Chinook_Sqlite.sqlite
 conn = sqlite3.connect('Chinook_SqliteGit.sqlite')
 
 st.Title("Overview of the Chinook Database based on 3 Queries")
