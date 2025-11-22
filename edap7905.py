@@ -45,8 +45,7 @@ ORDER BY TotalSales DESC
 LIMIT 10;""",conn)
 print(q2)
 
-st.write("My insight: The most popular artist is Iron Maiden taking the first position with the highest sales in terms of Money earned.
-The second highest earning artist is U2.")
+st.write("My insight: The most popular artist is Iron Maiden taking the first position with the highest sales in terms of Money earned. The second highest earning artist is U2.")
 
 st.header("Question 3 Customer life time value + last purchase")
 #Finalq3
