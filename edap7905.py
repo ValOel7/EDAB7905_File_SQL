@@ -4,7 +4,7 @@ import pandas as pd
 
 conn = sqlite3.connect('Chinook_SqliteGit.sqlite')
 
-st.Title("Overview of the Chinook Database based on 3 Queries")
+st.title("Overview of the Chinook Database based on 3 Queries")
 st.header("Question 1 Revenue by Country + share of total")
 q1 = pd.read_sql("""
 SELECT
